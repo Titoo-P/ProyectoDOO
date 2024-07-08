@@ -1,0 +1,6 @@
+Autobús ID: 11
+Pasajero: asdasd
+Asiento: 11
+Categoría: Semi Cama
+Precio: $2500.0
+
