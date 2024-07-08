@@ -4,6 +4,7 @@ import backend.*;
 
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,17 +23,30 @@ public class BusReservacionGUI extends JFrame {
 
     private void initializeUI() {
         setTitle("Sistema de Reserva de Asientos");
-        setSize(600, 600);
+        setSize(800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel asientosPanel = new JPanel(new GridLayout(0, 5, 10, 10));
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+
+        // Panel para el primer piso
+        JPanel piso1Panel = new JPanel(new GridLayout(0, 5, 10, 10));
+        piso1Panel.setBorder(BorderFactory.createTitledBorder("Piso 1"));
+
+        // Panel para el segundo piso
+        JPanel piso2Panel = new JPanel(new GridLayout(0, 5, 10, 10));
+        piso2Panel.setBorder(BorderFactory.createTitledBorder("Piso 2"));
+
         botonesAsiento = new JButton[autobus.getAsientos().size()];
+
+        int midpoint = autobus.getAsientos().size() / autobus.getNumeroDePisos();
 
         for (int i = 0; i < botonesAsiento.length; i++) {
             final int numero = i + 1;
             Asiento asiento = autobus.getAsiento(numero);
             botonesAsiento[i] = new JButton("Asiento " + numero);
+            botonesAsiento[i].setPreferredSize(new Dimension(50, 30));
             botonesAsiento[i].setBackground(asiento.getCategoria().equals("Salón Cama") ? Color.CYAN : Color.GREEN);
             botonesAsiento[i].addActionListener(new ActionListener() {
                 @Override
@@ -44,20 +58,30 @@ public class BusReservacionGUI extends JFrame {
                 botonesAsiento[i].setBackground(Color.RED);
             }
 
-        }
-
-        for (int i = 0; i < botonesAsiento.length; i++) {
-            if (i % 4 == 2) { // Cada 2 asientos añadir un espacio para el pasillo
-                asientosPanel.add(new JLabel()); // Espacio para el pasillo
+            // Añadir los botones a los paneles de acuerdo al piso
+            if (i < midpoint) {
+                if (i % 4 == 2) {
+                    piso1Panel.add(new JLabel());
+                }
+                piso1Panel.add(botonesAsiento[i]);
+            } else {
+                if ((i - midpoint) % 4 == 2) {
+                    piso2Panel.add(new JLabel());
+                }
+                piso2Panel.add(botonesAsiento[i]);
             }
-            asientosPanel.add(botonesAsiento[i]);
+
         }
 
         estadoLabel = new JLabel("Seleccione un asiento para reservar.");
         estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         estadoLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
-        add(asientosPanel, BorderLayout.CENTER);
+        mainPanel.add(piso1Panel);
+        mainPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio entre pisos
+        mainPanel.add(piso2Panel);
+
+        add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
     }
 
@@ -67,7 +91,7 @@ public class BusReservacionGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "El asiento " + numero + " ya está reservado. Por favor, seleccione otro asiento.", "Asiento Ocupado", JOptionPane.ERROR_MESSAGE);
             estadoLabel.setText("El asiento " + numero + " ya está reservado.");
         } else {
-            String nombre = JOptionPane.showInputDialog(this, "Asiento: " + numero + "\nCategoría: " + asiento.getCategoria() + "\nPrecio: $" + asiento.getPrecio()+ "\n\nIngrese su nombre:");
+            String nombre = JOptionPane.showInputDialog(this, "Ingrese su nombre:\n\nAsiento: " + numero + "\nCategoría: " + asiento.getCategoria() + "\nPrecio: $" + asiento.getPrecio() + "\nPiso: " + (numero <= autobus.getAsientos().size() / autobus.getNumeroDePisos() ? "1" : "2"));
             if (nombre != null && !nombre.trim().isEmpty()) {
                 Pasajero pasajero = new Pasajero(nombre);
                 if (sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, asiento.getPrecio())) {
