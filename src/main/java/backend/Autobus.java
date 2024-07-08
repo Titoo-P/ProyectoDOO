@@ -9,7 +9,7 @@ public class Autobus {
     private String horario;
     private List<Asiento> asientos;
 
-    public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, double precioSemiCama, double precioSalonCama) {
+    public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, int precioSemiCama, int precioSalonCama) {
         this.id = id;
         this.ruta = ruta;
         this.horario = horario;
