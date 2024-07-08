@@ -38,7 +38,11 @@ public class BusSeleccionGUI extends JFrame {
                 dispose();
             }
         });
-        
+
+        selectionPanel.add(selectLabel);
+        selectionPanel.add(autobusComboBox);
+        selectionPanel.add(selectButton);
+        add(selectionPanel);
     }
 }
 
