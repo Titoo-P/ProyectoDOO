@@ -36,6 +36,7 @@ public class BusReservacionGUI extends JFrame {
             botonesAsiento[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    manejarReserva(numero);
                 }
             });
             asientosPanel.add(botonesAsiento[i]);
@@ -49,5 +50,20 @@ public class BusReservacionGUI extends JFrame {
         add(estadoLabel, BorderLayout.SOUTH);
     }
 
+    private void manejarReserva(int numero) {
+        String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+        double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio:"));
+        if (nombre != null && !nombre.trim().isEmpty()) {
+            Pasajero pasajero = new Pasajero(nombre);
+            if (sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, precio)) {
+                botonesAsiento[numero - 1].setBackground(Color.RED);
+                estadoLabel.setText("Asiento " + numero + " reservado para " + nombre);
+            } else {
+                estadoLabel.setText("El asiento " + numero + " ya está reservado.");
+            }
+        } else {
+            estadoLabel.setText("Nombre no puede estar vacío.");
+        }
+    }
 }
 
