@@ -11,7 +11,7 @@ Enunciado:
   El sistema debe mostrar un menú que permita seleccionar el autobús en función de su horario y recorrido (se supone que estos datos están disponibles con los autobuses vacíos cuando se lanza el software)
 
 Diagrama de clases UML: 
-![Diagrama de Clases](https://github.com/Titoo-P/ProyectoDOO/UML.png)
+![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
 
 Diagrama de casos de uso: Faltante
 
