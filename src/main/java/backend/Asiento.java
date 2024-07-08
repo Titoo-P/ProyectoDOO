@@ -36,5 +36,9 @@ public class Asiento {
     public void cancelar() {
         this.reservado = false;
     }
+
+    public void setReservado(boolean b) {
+        this.reservado = b;
+    }
 }
 
