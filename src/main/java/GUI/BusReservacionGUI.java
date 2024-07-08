@@ -39,6 +39,9 @@ public class BusReservacionGUI extends JFrame {
                     manejarReserva(numero);
                 }
             });
+            if (autobus.getAsiento(numero).isReservado()) {
+                botonesAsiento[i].setBackground(Color.RED);
+            }
             asientosPanel.add(botonesAsiento[i]);
         }
 
@@ -51,18 +54,23 @@ public class BusReservacionGUI extends JFrame {
     }
 
     private void manejarReserva(int numero) {
-        String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
-        double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el precio:"));
-        if (nombre != null && !nombre.trim().isEmpty()) {
-            Pasajero pasajero = new Pasajero(nombre);
-            if (sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, precio)) {
-                botonesAsiento[numero - 1].setBackground(Color.RED);
-                estadoLabel.setText("Asiento " + numero + " reservado para " + nombre);
-            } else {
-                estadoLabel.setText("El asiento " + numero + " ya está reservado.");
-            }
+        Asiento asiento = autobus.getAsiento(numero);
+        if (asiento.isReservado()) {
+            JOptionPane.showMessageDialog(this, "El asiento " + numero + " ya está reservado. Por favor, seleccione otro asiento.", "Asiento Ocupado", JOptionPane.ERROR_MESSAGE);
+            estadoLabel.setText("El asiento " + numero + " ya está reservado.");
         } else {
-            estadoLabel.setText("Nombre no puede estar vacío.");
+            String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+            if (nombre != null && !nombre.trim().isEmpty()) {
+                Pasajero pasajero = new Pasajero(nombre);
+                if (sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, asiento.getPrecio())) {
+                    botonesAsiento[numero - 1].setBackground(Color.RED);
+                    estadoLabel.setText("Asiento " + numero + " reservado para " + nombre + ". Precio: $" + asiento.getPrecio());
+                } else {
+                    estadoLabel.setText("Error al reservar el asiento " + numero + ".");
+                }
+            } else {
+                estadoLabel.setText("Nombre no puede estar vacío.");
+            }
         }
     }
 }
