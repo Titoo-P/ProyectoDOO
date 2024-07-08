@@ -19,7 +19,7 @@ public class BusSeleccionGUI extends JFrame {
 
     private void initializeUI() {
         setTitle("Selección de Autobús");
-        setSize(600, 800);
+        setSize(400, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
@@ -61,20 +61,22 @@ public class BusSeleccionGUI extends JFrame {
     private void mostrarDetallesAutobus(String id) {
         Autobus autobus = sistemaDeReservas.seleccionarAutobus(id);
         StringBuilder detalles = new StringBuilder();
-        detalles.append("Ruta: ").append(autobus.getRuta()).append("\n");
-        detalles.append("Horario: ").append(autobus.getHorario()).append("\n");
-        detalles.append("Asientos Semi Cama:\n");
+        detalles.append(" Ruta: ").append(autobus.getRuta()).append("\n");
+        detalles.append(" Horario: ").append(autobus.getHorario()).append("\n");
+        detalles.append(" Pisos: ").append(autobus.getNumeroDePisos()).append("\n\n");
+
+        detalles.append(" Asientos Semi Cama:\n");
 
         for (Asiento asiento : autobus.getAsientos()) {
             if (asiento.getCategoria().equals("Semi Cama")) {
-                detalles.append("  Asiento ").append(asiento.getNumero()).append(" - Precio: $").append(asiento.getPrecio()).append("\n");
+                detalles.append("   Asiento ").append(asiento.getNumero()).append(" - Precio: $").append(asiento.getPrecio()).append("\n");
             }
         }
 
-        detalles.append("Asientos Salón Cama:\n");
+        detalles.append("\n Asientos Salón Cama:\n");
         for (Asiento asiento : autobus.getAsientos()) {
             if (asiento.getCategoria().equals("Salón Cama")) {
-                detalles.append("  Asiento ").append(asiento.getNumero()).append(" - Precio: $").append(asiento.getPrecio()).append("\n");
+                detalles.append("   Asiento ").append(asiento.getNumero()).append(" - Precio: $").append(asiento.getPrecio()).append("\n");
             }
         }
 
