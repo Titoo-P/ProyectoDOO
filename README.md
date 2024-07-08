@@ -15,6 +15,7 @@ Diagrama de clases UML: Faltante
 Diagrama de casos de uso: Faltante
 
 Lista y patrones utilizados:
+
  -Singleton: El patrón Singleton asegura que haya una única instancia de SistemaDeReservas en todo el sistema, permitiendo un punto de acceso global a dicha instancia. Esto es útil para mantener el estado global de las reservas y proporcionar métodos                 centralizados para gestionar los autobuses y sus asientos.
  - Factory Method: SistemaDeReservas para la creación de Autobus. El Factory Method proporciona una interfaz para la creación de objetos Autobus dentro del sistema, permitiendo a las subclases o métodos especializados de SistemaDeReservas crear diferentes tipos de    autobuses sin especificar las clases concretas que se crearán. Esto es útil cuando quieres extender la aplicación para soportar diferentes tipos de autobuses en el futuro.
  - Observer: Comunicación entre BusReservacionGUI y SistemaDeReservas. El patrón Observer se utiliza para notificar a BusReservacionGUI sobre los cambios en el estado de las reservas (como cuando se reserva un asiento). Esto permite que la interfaz gráfica se     
