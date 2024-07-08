@@ -9,13 +9,17 @@ public class Autobus {
     private String horario;
     private List<Asiento> asientos;
 
-    public Autobus(String id, String ruta, String horario, int numeroDeAsientos, String categoriaAsiento) {
+    public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, double precioSemiCama, double precioSalonCama) {
         this.id = id;
         this.ruta = ruta;
         this.horario = horario;
-        this.asientos = new ArrayList<>(numeroDeAsientos);
-        for (int i = 1; i <= numeroDeAsientos; i++) {
-            asientos.add(new Asiento(i, categoriaAsiento));
+        this.asientos = new ArrayList<>(numeroDeAsientosSemiCama + numeroDeAsientosSalonCama);
+
+        for (int i = 1; i <= numeroDeAsientosSemiCama; i++) {
+            asientos.add(new Asiento(i, "Semi Cama", precioSemiCama));
+        }
+        for (int i = 1; i <= numeroDeAsientosSalonCama; i++) {
+            asientos.add(new Asiento(numeroDeAsientosSemiCama + i, "Salón Cama", precioSalonCama));
         }
     }
 
