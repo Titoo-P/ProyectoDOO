@@ -1,5 +1,7 @@
 package backend;
 
+import Excepciones.*;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,9 +17,16 @@ public class Autobus {
     private int numeroDePisos;
 
     public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, int precioSemiCama, int precioSalonCama,int numeroDePisos) {
-        if (numeroDeAsientosSemiCama % 2 != 0) {
-            throw new IllegalArgumentException("El número de asientos semi-cama debe ser par.");
+        if (numeroDeAsientosSemiCama < 0 || numeroDeAsientosSalonCama < 0) {
+            throw new InvalidSeatNumberException("El número de asientos no puede ser negativo.");
         }
+        if (precioSemiCama < 0 || precioSalonCama < 0) {
+            throw new NegativePriceException("El precio no puede ser negativo.");
+        }
+        if (numeroDePisos != 1 && numeroDePisos != 2) {
+            throw new InvalidFloorNumberException("El número de pisos debe ser 1 o 2.");
+        }
+
         this.id = id;
         this.ruta = ruta;
         this.horario = horario;
@@ -31,11 +40,22 @@ public class Autobus {
     }
 
     private void crearAsientos() {
-        for (int i = 1; i <= numeroDeAsientosSemiCama; i++) {
-            asientos.add(new Asiento(i, "Semi Cama", precioSemiCama));
-        }
-        for (int i = numeroDeAsientosSemiCama + 1; i <= numeroDeAsientosSemiCama + numeroDeAsientosSalonCama; i++) {
-            asientos.add(new Asiento(i, "Salón Cama", precioSalonCama));
+        if (numeroDePisos == 1) {
+            // Autobús de un solo piso: semi cama primero, luego salón cama
+            for (int i = 1; i <= numeroDeAsientosSemiCama; i++) {
+                asientos.add(new Asiento(i, "Semi Cama", precioSemiCama));
+            }
+            for (int i = numeroDeAsientosSemiCama + 1; i <= numeroDeAsientosSemiCama + numeroDeAsientosSalonCama; i++) {
+                asientos.add(new Asiento(i, "Salón Cama", precioSalonCama));
+            }
+        } else if (numeroDePisos == 2) {
+            // Autobús de dos pisos: primer piso semi cama, segundo piso salón cama
+            for (int i = 1; i <= numeroDeAsientosSemiCama; i++) {
+                asientos.add(new Asiento(i, "Semi Cama", precioSemiCama));
+            }
+            for (int i = numeroDeAsientosSemiCama + 1; i <= numeroDeAsientosSemiCama + numeroDeAsientosSalonCama; i++) {
+                asientos.add(new Asiento(i, "Salón Cama", precioSalonCama));
+            }
         }
     }
 
@@ -60,7 +80,22 @@ public class Autobus {
     }
 
     public Asiento getAsiento(int numero) {
+        if (numero < 1 || numero > asientos.size()) {
+            throw new InvalidSeatNumberException("Número de asiento fuera de los límites.");
+        }
         return asientos.get(numero - 1);
+    }
+
+    public int getNumeroDeAsientosSemiCama() {
+        return  numeroDeAsientosSemiCama;
+    }
+
+    public int getPrecioSalonCama() {
+        return precioSalonCama;
+    }
+
+    public int getPrecioSemiCama() {
+        return precioSemiCama;
     }
 }
 
