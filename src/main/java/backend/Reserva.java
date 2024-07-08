@@ -3,10 +3,12 @@ package backend;
 
 public class Reserva {
     private Pasajero pasajero;
+    private String idAutobus;
     private Asiento asiento;
     private double precio;
 
-    public Reserva(Pasajero pasajero, Asiento asiento, double precio) {
+    public Reserva(String idAutobus, Pasajero pasajero, Asiento asiento, double precio) {
+        this.idAutobus = idAutobus;
         this.pasajero = pasajero;
         this.asiento = asiento;
         this.precio = precio;
@@ -14,6 +16,9 @@ public class Reserva {
 
     public Pasajero getPasajero() {
         return pasajero;
+    }
+    public String getIdAutobus(){
+        return idAutobus;
     }
 
     public Asiento getAsiento() {

@@ -31,7 +31,7 @@ public class SistemaDeReservas {
                 Asiento asiento = autobus.getAsiento(numeroAsiento);
                 if (!asiento.isReservado()) {
                     asiento.setReservado(true);
-                    Reserva reserva = new Reserva(pasajero, asiento, precio);
+                    Reserva reserva = new Reserva(idAutobus,pasajero, asiento, precio);
                     reservas.put(numeroAsiento, reserva);
                     return true;
                 }
@@ -69,7 +69,7 @@ public class SistemaDeReservas {
     public void generarReporte() {
         try (FileWriter writer = new FileWriter("reporte_reservas.txt")) {
             for (Reserva reserva : reservas.values()) {
-                writer.write("Autobús ID: " + reserva.getAsiento().getNumero() + "\n");
+                writer.write("Autobús ID: " + reserva.getIdAutobus().toString() + "\n");
                 writer.write("Pasajero: " + reserva.getPasajero().getNombre() + "\n");
                 writer.write("Asiento: " + reserva.getAsiento().getNumero() + "\n");
                 writer.write("Categoría: " + reserva.getAsiento().getCategoria() + "\n");
