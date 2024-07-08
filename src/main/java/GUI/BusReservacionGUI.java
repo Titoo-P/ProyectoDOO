@@ -1,5 +1,7 @@
 package GUI;
 
+
+import Excepciones.*;
 import backend.*;
 
 
@@ -40,7 +42,7 @@ public class BusReservacionGUI extends JFrame {
 
         botonesAsiento = new JButton[autobus.getAsientos().size()];
 
-        int midpoint = autobus.getAsientos().size() / autobus.getNumeroDePisos();
+        int midpoint = autobus.getNumeroDePisos() == 2 ? autobus.getNumeroDeAsientosSemiCama() : autobus.getAsientos().size() / autobus.getNumeroDePisos();
 
         for (int i = 0; i < botonesAsiento.length; i++) {
             final int numero = i + 1;
@@ -87,22 +89,29 @@ public class BusReservacionGUI extends JFrame {
 
     private void manejarReserva(int numero) {
         Asiento asiento = autobus.getAsiento(numero);
-        if (asiento.isReservado()) {
-            JOptionPane.showMessageDialog(this, "El asiento " + numero + " ya está reservado. Por favor, seleccione otro asiento.", "Asiento Ocupado", JOptionPane.ERROR_MESSAGE);
-            estadoLabel.setText("El asiento " + numero + " ya está reservado.");
-        } else {
-            String nombre = JOptionPane.showInputDialog(this, "Ingrese su nombre:\n\nAsiento: " + numero + "\nCategoría: " + asiento.getCategoria() + "\nPrecio: $" + asiento.getPrecio() + "\nPiso: " + (numero <= autobus.getAsientos().size() / autobus.getNumeroDePisos() ? "1" : "2"));
-            if (nombre != null && !nombre.trim().isEmpty()) {
-                Pasajero pasajero = new Pasajero(nombre);
-                if (sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, asiento.getPrecio())) {
-                    botonesAsiento[numero - 1].setBackground(Color.RED);
-                    estadoLabel.setText("Asiento " + numero + " reservado para " + nombre + ". Precio: $" + asiento.getPrecio());
-                } else {
-                    estadoLabel.setText("Error al reservar el asiento " + numero + ".");
-                }
+        try {
+            if (asiento.isReservado()) {
+                JOptionPane.showMessageDialog(this, "El asiento " + numero + " ya está reservado. Por favor, seleccione otro asiento.", "Asiento Ocupado", JOptionPane.ERROR_MESSAGE);
+                estadoLabel.setText("El asiento " + numero + " ya está reservado.");
             } else {
-                estadoLabel.setText("Nombre no puede estar vacío.");
+                String nombre = JOptionPane.showInputDialog(this, "Asiento: " + numero + "\nCategoría: " + asiento.getCategoria() + "\nPrecio: $" + asiento.getPrecio() + "\nPiso: " + (numero <= autobus.getAsientos().size() / autobus.getNumeroDePisos() ? "1" : "2") + "\n\nIngrese su nombre:");
+                if (nombre != null && !nombre.trim().isEmpty()) {
+                    Pasajero pasajero = new Pasajero(nombre);
+                    double precio = asiento.getCategoria().equals("Salón Cama") ? autobus.getPrecioSalonCama() : autobus.getPrecioSemiCama();
+                    sistemaDeReservas.reservarAsiento(autobus.getId(), numero, pasajero, precio);
+                    botonesAsiento[numero - 1].setBackground(Color.RED);
+                    estadoLabel.setText("Asiento " + numero + " reservado para " + nombre + ". Precio: $" + precio);
+
+                    // Mostrar mensaje emergente de confirmación
+                    JOptionPane.showMessageDialog(this, "Compra confirmada para el asiento " + numero + ".\n¡Gracias por su reserva!", "Compra Confirmada", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nombre no puede estar vacío","Error en la Reserva", JOptionPane.ERROR_MESSAGE);
+                    estadoLabel.setText("Nombre no puede estar vacío.");
+                }
             }
+        } catch (InvalidSeatNumberException | NegativePriceException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error en la Reserva", JOptionPane.ERROR_MESSAGE);
+            estadoLabel.setText("Error al reservar el asiento " + numero + ".");
         }
     }
 }
