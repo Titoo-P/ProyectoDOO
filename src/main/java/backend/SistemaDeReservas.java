@@ -1,7 +1,9 @@
 package backend;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.FileWriter;
 
 public class SistemaDeReservas {
     private Map<String, Autobus> autobuses;
@@ -41,6 +43,21 @@ public class SistemaDeReservas {
                 asiento.cancelar();
                 reservas.remove(numeroDeAsiento);
             }
+        }
+    }
+
+    public void generarReporte() {
+        try (FileWriter writer = new FileWriter("reporte_reservas.txt")) {
+            for (Reserva reserva : reservas.values()) {
+                writer.write("Autobús ID: " + reserva.getAsiento().getNumero() + "\n");
+                writer.write("Pasajero: " + reserva.getPasajero().getNombre() + "\n");
+                writer.write("Asiento: " + reserva.getAsiento().getNumero() + "\n");
+                writer.write("Categoría: " + reserva.getAsiento().getCategoria() + "\n");
+                writer.write("Precio: $" + reserva.getPrecio() + "\n\n");
+            }
+            System.out.println("Informe de reservas generado exitosamente.");
+        } catch (IOException e) {
+            System.err.println("Error al generar el informe de reservas: " + e.getMessage());
         }
     }
 
