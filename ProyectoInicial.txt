@@ -1,0 +1,37 @@
+Integrante del Proyecto:
+
+- Roberto Cruz Pinto
+
+Este documento detallara como se penso hacer el Proyecto Semestral con 
+el Tema "Sistema de reserva de asientos de autobús".
+
+El enfoque para la Realizacion del Proyecto va a ser el siguiente:
+
+===Requisitos del Sistema===
+
+- Visualización de asientos: Mostrar una representación gráfica de los asientos disponibles en el autobús.
+- Selección de asientos: Permitir seleccionar y reservar asientos.
+- Información de asientos: Mostrar detalles de cada asiento (ubicación, número y categoría).
+- Confirmación de reserva: Confirmar la reserva y mostrar el precio a pagar.
+- Gestión de buses: Manejar diferentes tipos de autobuses.
+- Selección de buses: Menú para seleccionar autobús según horario y recorrido.
+
+===Diagrama de Casos de uso y usos Principales===
+
+- Seleccionar Autobús: Elegir un bus basado en horario y recorrido.
+- Ver Asientos: Mostrar la disposición de asientos del busseleccionado.
+- Seleccionar Asiento: Elegir asientos disponibles.
+- Confirmar Reserva: Verificar disponibilidad y confirmar la reserva.
+- Cancelar Reserva: Opción para cancelar una reserva existente.
+
+===Diseño de Clases (Diagrama UML)===
+
+-Asiento
+-Autobus
+-Pasajero
+-Reserva
+-SistemaDeReservas
+-BusSeleccion
+-BusReservacionGUI
+
+
