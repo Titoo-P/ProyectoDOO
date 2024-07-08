@@ -4,9 +4,9 @@ public class Asiento {
     private int numero;
     private String categoria;
     private boolean reservado;
-    private double precio;
+    private int precio;
 
-    public Asiento(int numero, String categoria, double precio) {
+    public Asiento(int numero, String categoria, int precio) {
         this.numero = numero;
         this.categoria = categoria;
         this.reservado = false;
@@ -21,7 +21,7 @@ public class Asiento {
         return categoria;
     }
 
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
