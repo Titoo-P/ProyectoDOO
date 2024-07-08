@@ -47,5 +47,9 @@ public class SistemaDeReservas {
     public Reserva getReserva(String autobusId, int numeroDeAsiento) {
         return reservas.get(numeroDeAsiento);
     }
+
+    public Map<String, Autobus> getAutobuses() {
+        return autobuses;
+    }
 }
 
