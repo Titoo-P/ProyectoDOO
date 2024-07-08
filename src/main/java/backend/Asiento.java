@@ -4,9 +4,9 @@ public class Asiento {
     private int numero;
     private String categoria;
     private boolean reservado;
-    private float precio;
+    private double precio;
 
-    public Asiento(int numero, String categoria, float precio) {
+    public Asiento(int numero, String categoria, double precio) {
         this.numero = numero;
         this.categoria = categoria;
         this.reservado = false;
