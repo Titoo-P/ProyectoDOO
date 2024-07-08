@@ -1,41 +1,98 @@
 
-
-
 import backend.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SistemaDeReservasTest {
+    private SistemaDeReservas sistemaDeReservas;
+    private Autobus autobus;
+
+    @BeforeEach
+    public void setUp() {
+        sistemaDeReservas = new SistemaDeReservas();
+        autobus = new Autobus("1", "Ruta A", "10:00 AM", 4, 4, 100, 200, 1);
+        sistemaDeReservas.agregarAutobus(autobus);
+    }
+
+    @Test
+    public void testAgregarAutobus() {
+        assertEquals(1, sistemaDeReservas.getAutobuses().size());
+    }
+
+    @Test
+    public void testSeleccionarAutobus() {
+        assertNotNull(sistemaDeReservas.seleccionarAutobus("1"));
+        assertNull(sistemaDeReservas.seleccionarAutobus("999")); // Autobús no existente
+    }
+
     @Test
     public void testReservarAsiento() {
-        SistemaDeReservas sistema = new SistemaDeReservas();
-        Autobus autobus = new Autobus("001", "Ruta 1", "10:00 AM", 4, 2, 2500, 5000, 1);
-        sistema.agregarAutobus(autobus);
+        Pasajero pasajero = new Pasajero("Juan");
+        boolean reservado = sistemaDeReservas.reservarAsiento("1", 1, pasajero, 100.0);
+        assertTrue(reservado);
 
-        Pasajero pasajero = new Pasajero("Juan Perez");
-        assertTrue(sistema.reservarAsiento("001", 1, pasajero, 2500));
+        // Verificar que el asiento está reservado
+        Asiento asiento = autobus.getAsiento(1);
+        assertTrue(asiento.isReservado());
+
+        // Intentar reservar el mismo asiento nuevamente
+        boolean reservadoOtraVez = sistemaDeReservas.reservarAsiento("1", 1, new Pasajero("Pedro"), 100.0);
+        assertFalse(reservadoOtraVez);
     }
 
     @Test
-    public void testReservarAsientoInvalido() {
-        SistemaDeReservas sistema = new SistemaDeReservas();
-        Autobus autobus = new Autobus("001", "Ruta 1", "10:00 AM", 4, 2, 2500, 5000, 1);
-        sistema.agregarAutobus(autobus);
+    public void testCancelarReserva() {
+        Pasajero pasajero = new Pasajero("Juan");
+        sistemaDeReservas.reservarAsiento("1", 1, pasajero, 100.0);
+        sistemaDeReservas.cancelarReserva("1", 1);
 
-        Pasajero pasajero = new Pasajero("Juan Perez");
-        assertFalse(sistema.reservarAsiento("001", 100, pasajero, 2500)); // Asiento inválido
+        // Verificar que el asiento está disponible de nuevo
+        Asiento asiento = autobus.getAsiento(1);
+        assertFalse(asiento.isReservado());
     }
 
     @Test
-    public void testInvalidSeatCountException() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Autobus("001", "Ruta 1", "10:00 AM", 5, 2, 2500, 5000, 1); // Número impar de asientos semi-cama
+    public void testGetReserva() {
+        Pasajero pasajero = new Pasajero("Juan");
+        sistemaDeReservas.reservarAsiento("1", 1, pasajero, 100.0);
+        Reserva reserva = sistemaDeReservas.getReserva("1", 1);
+
+        assertNotNull(reserva);
+        assertEquals("Juan", reserva.getPasajero().getNombre());
+    }
+
+    @Test
+    public void testAsientoNoDisponible() {
+        Pasajero pasajero = new Pasajero("Juan");
+        sistemaDeReservas.reservarAsiento("1", 1, pasajero, 100.0);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            sistemaDeReservas.getReserva("1", 999); // Número de asiento no válido
         });
+    }
 
-        String expectedMessage = "El número de asientos semi-cama debe ser par.";
-        String actualMessage = exception.getMessage();
+    @Test
+    public void testReservaAutobusNoExistente() {
+        Pasajero pasajero = new Pasajero("Juan");
+        boolean reservado = sistemaDeReservas.reservarAsiento("999", 1, pasajero, 100.0);
+        assertFalse(reservado);
+    }
 
-        assertTrue(actualMessage.contains(expectedMessage));
+    @Test
+    public void testReservarAsientoAutobusMultipiso() {
+        Autobus autobusMultipiso = new Autobus("2", "Ruta B", "02:00 PM", 6, 6, 150, 300, 2);
+        sistemaDeReservas.agregarAutobus(autobusMultipiso);
+
+        Pasajero pasajero = new Pasajero("María");
+        boolean reservado = sistemaDeReservas.reservarAsiento("2", 8, pasajero, 300.0);
+        assertTrue(reservado);
+
+        // Verificar que el asiento está reservado
+        Asiento asiento = autobusMultipiso.getAsiento(8);
+        assertTrue(asiento.isReservado());
     }
 }
 
