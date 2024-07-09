@@ -16,6 +16,9 @@ Diagrama de clases UML:
 Diagrama de casos de uso: 
 ![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/a2be68e9-67c0-41c1-81a5-e9a911b77c1a)
 
+![Imagen01Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/1153acd3-23c3-4dbf-8d75-5300273062bd)
+![Imagen02Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/99d7e9eb-2ab7-43da-9383-6a7ab6dbaaeb)
+
 
 Lista y patrones utilizados:
 
