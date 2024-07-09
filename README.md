@@ -14,7 +14,9 @@ Diagrama de clases UML:
 ![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
 
 Diagrama de casos de uso: 
-![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/a2be68e9-67c0-41c1-81a5-e9a911b77c1a)
+
+![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/7b3ee9f3-4ffe-448f-9e37-648ba6df3dc9)
+
 
 Imagenes de la GUI del Proyecto:
 
