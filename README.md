@@ -27,10 +27,20 @@ Imagenes de la Gui del Proyecto Actualizado:
 ![Fotoproyecto2](https://github.com/user-attachments/assets/1008d70a-cba4-4b08-83dd-eb754b5aef34)
 
 
+
+
+
+
 ///////////////////////////////////////////////////
 
 
 
+
+////// Entrega 8/7/2024  /////
+
+-Roberto Cruz Pinto
+
+Tema 2: Sistema de reserva de asientos de autobús
 
 Diagrama de clases UML: 
 ![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
@@ -49,9 +59,6 @@ Lista y patrones utilizados:
 
  - Singleton: El patrón Singleton asegura que haya una única instancia de SistemaDeReservas en todo el sistema, permitiendo un punto de acceso global a dicha instancia. Esto es útil para mantener el estado global de las reservas y proporcionar métodos                 centralizados para gestionar los autobuses y sus asientos.
  - Factory Method: SistemaDeReservas para la creación de Autobus. El Factory Method proporciona una interfaz para la creación de objetos Autobus dentro del sistema, permitiendo a las subclases o métodos especializados de SistemaDeReservas crear diferentes tipos de    autobuses sin especificar las clases concretas que se crearán. Esto es útil cuando quieres extender la aplicación para soportar diferentes tipos de autobuses en el futuro.
- - Observer: Comunicación entre BusReservacionGUI y SistemaDeReservas. El patrón Observer se utiliza para notificar a BusReservacionGUI sobre los cambios en el estado de las reservas (como cuando se reserva un asiento). Esto permite que la interfaz gráfica se     
-   actualice automáticamente cuando hay cambios en el sistema de reservas.
- - Template Method: Métodos de reservación en SistemaDeReservas. El patrón Template Method define el esqueleto de un algoritmo en una superclase, pero permite a las subclases sobrescribir ciertos pasos del algoritmo sin cambiar su estructura general. En este caso,    puedes tener diferentes estrategias para reservar asientos en función de la categoría del asiento (salón cama o semi cama), mientras reutilizas la estructura general del método de reservación.
 
 Desiciones del Proyecto: 
 
