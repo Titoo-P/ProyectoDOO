@@ -3,7 +3,7 @@ package GUI;
 
 import Excepciones.*;
 import backend.*;
-import backend.autobuses.Autobus;
+import backend.Autobus;
 
 
 import javax.swing.*;
@@ -89,13 +89,19 @@ public class BusReservacionGUI extends JFrame {
             }
         });
 
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BorderLayout());
+        southPanel.add(estadoLabel, BorderLayout.CENTER);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(volverButton);
+        southPanel.add(buttonPanel, BorderLayout.SOUTH);
+
         mainPanel.add(piso1Panel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio entre pisos
         mainPanel.add(piso2Panel);
-        mainPanel.add(volverButton);
 
         add(mainPanel, BorderLayout.CENTER);
-        add(estadoLabel, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH);
     }
 
     private void manejarReserva(int numero) {

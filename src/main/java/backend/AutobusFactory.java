@@ -1,4 +1,7 @@
-package backend.autobuses;
+package backend;
+
+import backend.autobuses.BiopioAutobus;
+import backend.autobuses.PullwomanAutobus;
 
 public class AutobusFactory {
     public static Autobus crearAutobus(String tipo, String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, int precioSemiCama, int precioSalonCama, int numeroDePisos) {

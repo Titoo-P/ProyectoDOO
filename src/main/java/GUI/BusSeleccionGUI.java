@@ -1,7 +1,7 @@
 package GUI;
 
 import backend.*;
-import backend.autobuses.Autobus;
+import backend.Autobus;
 
 import java.awt.*;
 import javax.swing.*;

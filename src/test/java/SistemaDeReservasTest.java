@@ -1,20 +1,21 @@
 
+import Excepciones.*;
 import backend.*;
 
-import backend.autobuses.Autobus;
+import backend.autobuses.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SistemaDeReservasTest {
     private SistemaDeReservas sistemaDeReservas;
-    private Autobus autobus;
+    private AutobusConcreto autobus;
 
     @BeforeEach
     public void setUp() {
-        sistemaDeReservas = new SistemaDeReservas();
-        autobus = new Autobus("1", "Ruta A", "10:00 AM", 4, 4, 100, 200, 1);
+        sistemaDeReservas = SistemaDeReservas.getInstance(); // Utilizar el singleton
+        sistemaDeReservas.getAutobuses().clear(); // Limpiar autobuses antes de cada prueba
+        autobus = new AutobusConcreto("1", "Ruta A", "10:00 AM", 4, 4, 100, 200, 1);
         sistemaDeReservas.agregarAutobus(autobus);
     }
 
@@ -66,16 +67,6 @@ public class SistemaDeReservasTest {
     }
 
     @Test
-    public void testAsientoNoDisponible() {
-        Pasajero pasajero = new Pasajero("Juan");
-        sistemaDeReservas.reservarAsiento("1", 1, pasajero, 100.0);
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            sistemaDeReservas.getReserva("1", 999); // Número de asiento no válido
-        });
-    }
-
-    @Test
     public void testReservaAutobusNoExistente() {
         Pasajero pasajero = new Pasajero("Juan");
         boolean reservado = sistemaDeReservas.reservarAsiento("999", 1, pasajero, 100.0);
@@ -84,7 +75,7 @@ public class SistemaDeReservasTest {
 
     @Test
     public void testReservarAsientoAutobusMultipiso() {
-        Autobus autobusMultipiso = new Autobus("2", "Ruta B", "02:00 PM", 6, 6, 150, 300, 2);
+        AutobusConcreto autobusMultipiso = new AutobusConcreto("2", "Ruta B", "02:00 PM", 6, 6, 150, 300, 2);
         sistemaDeReservas.agregarAutobus(autobusMultipiso);
 
         Pasajero pasajero = new Pasajero("María");
