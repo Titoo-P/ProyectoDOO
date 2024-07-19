@@ -4,7 +4,10 @@ import Excepciones.*;
 
 import java.util.List;
 import java.util.ArrayList;
-
+/**
+ * La clase Autobus representa un autobús con sus asientos y detalles.
+ * Cada autobús tiene un ID, una ruta, un horario, asientos de diferentes categorías y un número de pisos.
+ */
 public abstract class Autobus {
     private String id;
     private String ruta;
@@ -16,7 +19,22 @@ public abstract class Autobus {
     private List<Asiento> asientos;
     private int numeroDePisos;
 
-    public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, int precioSemiCama, int precioSalonCama,int numeroDePisos) {
+    /**
+     * Constructor para crear un autobús con los detalles especificados.
+     *
+     * @param id el ID del autobús
+     * @param ruta la ruta del autobús
+     * @param horario el horario del autobús
+     * @param numeroDeAsientosSemiCama el número de asientos semi cama
+     * @param numeroDeAsientosSalonCama el número de asientos salón cama
+     * @param precioSemiCama el precio de los asientos semi cama
+     * @param precioSalonCama el precio de los asientos salón cama
+     * @param numeroDePisos el número de pisos del autobús
+     * @throws InvalidSeatNumberException si el número de asientos es negativo
+     * @throws NegativePriceException si el precio es negativo
+     * @throws InvalidFloorNumberException si el número de pisos no es 1 o 2
+     */
+    public Autobus(String id, String ruta, String horario, int numeroDeAsientosSemiCama, int numeroDeAsientosSalonCama, int precioSemiCama, int precioSalonCama, int numeroDePisos) {
         if (numeroDeAsientosSemiCama < 0 || numeroDeAsientosSalonCama < 0) {
             throw new InvalidSeatNumberException("El número de asientos no puede ser negativo.");
         }
@@ -39,6 +57,9 @@ public abstract class Autobus {
         crearAsientos();
     }
 
+    /**
+     * Crea los asientos del autobús de acuerdo a la configuración especificada.
+     */
     private void crearAsientos() {
         if (numeroDePisos == 1) {
             // Autobús de un solo piso: semi cama primero, luego salón cama
@@ -59,26 +80,58 @@ public abstract class Autobus {
         }
     }
 
+    /**
+     * Obtiene el número de pisos del autobús.
+     *
+     * @return el número de pisos del autobús
+     */
     public int getNumeroDePisos() {
         return numeroDePisos;
     }
 
+    /**
+     * Obtiene el ID del autobús.
+     *
+     * @return el ID del autobús
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Obtiene la ruta del autobús.
+     *
+     * @return la ruta del autobús
+     */
     public String getRuta() {
         return ruta;
     }
 
+    /**
+     * Obtiene el horario del autobús.
+     *
+     * @return el horario del autobús
+     */
     public String getHorario() {
         return horario;
     }
 
+    /**
+     * Obtiene la lista de asientos del autobús.
+     *
+     * @return la lista de asientos del autobús
+     */
     public List<Asiento> getAsientos() {
         return asientos;
     }
 
+    /**
+     * Obtiene un asiento específico por su número.
+     *
+     * @param numero el número del asiento
+     * @return el asiento correspondiente al número especificado
+     * @throws InvalidSeatNumberException si el número de asiento está fuera de los límites
+     */
     public Asiento getAsiento(int numero) {
         if (numero < 1 || numero > asientos.size()) {
             throw new InvalidSeatNumberException("Número de asiento fuera de los límites.");
@@ -86,14 +139,29 @@ public abstract class Autobus {
         return asientos.get(numero - 1);
     }
 
+    /**
+     * Obtiene el número de asientos semi cama del autobús.
+     *
+     * @return el número de asientos semi cama
+     */
     public int getNumeroDeAsientosSemiCama() {
-        return  numeroDeAsientosSemiCama;
+        return numeroDeAsientosSemiCama;
     }
 
+    /**
+     * Obtiene el precio de los asientos salón cama.
+     *
+     * @return el precio de los asientos salón cama
+     */
     public int getPrecioSalonCama() {
         return precioSalonCama;
     }
 
+    /**
+     * Obtiene el precio de los asientos semi cama.
+     *
+     * @return el precio de los asientos semi cama
+     */
     public int getPrecioSemiCama() {
         return precioSemiCama;
     }

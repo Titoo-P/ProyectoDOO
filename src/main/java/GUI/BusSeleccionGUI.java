@@ -8,17 +8,29 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La clase BusSeleccionGUI proporciona una interfaz gráfica de usuario
+ * para seleccionar un autobús y ver sus detalles antes de proceder a la reserva de asientos.
+ */
 public class BusSeleccionGUI extends JFrame {
     private SistemaDeReservas sistemaDeReservas;
     private JComboBox<String> autobusComboBox;
     private JTextArea detallesTextArea;
 
+    /**
+     * Constructor de la clase BusSeleccionGUI.
+     *
+     * @param sistemaDeReservas la instancia del sistema de reservas
+     */
     public BusSeleccionGUI(SistemaDeReservas sistemaDeReservas) {
         this.sistemaDeReservas = sistemaDeReservas;
         initializeUI();
 
         setIconImage(ImagenesEnum.ICONO.getImage());
     }
+    /**
+     * Inicializa la interfaz gráfica de usuario.
+     */
 
     private void initializeUI() {
         setTitle("Selección de Autobús");
@@ -62,6 +74,11 @@ public class BusSeleccionGUI extends JFrame {
         add(new JScrollPane(detallesTextArea), BorderLayout.CENTER);
     }
 
+    /**
+     * Muestra los detalles del autobús seleccionado en el área de texto.
+     *
+     * @param id el ID del autobús seleccionado
+     */
     private void mostrarDetallesAutobus(String id) {
         Autobus autobus = sistemaDeReservas.seleccionarAutobus(id);
         StringBuilder detalles = new StringBuilder();

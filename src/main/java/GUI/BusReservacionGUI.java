@@ -11,6 +11,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La clase BusReservacionGUI proporciona una interfaz gráfica de usuario
+ * para gestionar la reserva de asientos en un autobús específico.
+ */
 public class BusReservacionGUI extends JFrame {
     private JButton[] botonesAsiento;
     private SistemaDeReservas sistemaDeReservas;
@@ -18,6 +22,12 @@ public class BusReservacionGUI extends JFrame {
     private JLabel estadoLabel;
     private JButton volverButton;
 
+    /**
+     * Constructor de la clase BusReservacionGUI.
+     *
+     * @param sistemaDeReservas la instancia del sistema de reservas
+     * @param autobus           el autobús cuyos asientos se van a reservar
+     */
     public BusReservacionGUI(SistemaDeReservas sistemaDeReservas, Autobus autobus) {
         this.sistemaDeReservas = sistemaDeReservas;
         this.autobus = autobus;
@@ -26,6 +36,9 @@ public class BusReservacionGUI extends JFrame {
         setIconImage(ImagenesEnum.ICONO.getImage());
     }
 
+    /**
+     * Inicializa la interfaz gráfica de usuario.
+     */
     private void initializeUI() {
         setTitle("Sistema de Reserva de Asientos");
         setSize(800, 800);
@@ -106,6 +119,11 @@ public class BusReservacionGUI extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Maneja la lógica de reserva de asientos.
+     *
+     * @param numero el número del asiento a reservar
+     */
     private void manejarReserva(int numero) {
         Asiento asiento = autobus.getAsiento(numero);
         try {

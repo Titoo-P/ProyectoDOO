@@ -4,7 +4,26 @@ import GUI.*;
 
 import javax.swing.*;
 
+/**
+ * La clase {@code Main} es el punto de entrada para la aplicación de reserva de autobuses.
+ *
+ * <p>Esta clase configura el sistema de reservas creando una instancia única de {@code SistemaDeReservas},
+ * agrega algunos autobuses de ejemplo para la demostración y establece un hook de cierre para generar un informe
+ * de reservas cuando la aplicación se cierra.</p>
+ *
+ * <p>Además, inicia la interfaz gráfica de usuario (GUI) que permite a los usuarios seleccionar un autobús
+ * para realizar reservas. La GUI se muestra utilizando el hilo de despacho de eventos de Swing.</p>
+ */
 public class Main {
+    /**
+     * Método principal que se ejecuta al iniciar la aplicación.
+     *
+     * <p>Este método configura el sistema de reservas, agrega autobuses de ejemplo y configura un hook
+     * de cierre para generar un informe de reservas. Luego, inicia la interfaz gráfica de usuario para
+     * que los usuarios puedan seleccionar un autobús y realizar reservas.</p>
+     *
+     * @param args los argumentos de línea de comandos (no utilizados en esta aplicación)
+     */
     public static void main(String[] args) {
         SistemaDeReservas sistemaDeReservas = SistemaDeReservas.getInstance();
 
@@ -18,11 +37,6 @@ public class Main {
         Runtime.getRuntime().addShutdownHook(new Thread(sistemaDeReservas::generarReporte));
 
         // Iniciar GUI de selección de autobús
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new BusSeleccionGUI(sistemaDeReservas).setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new BusSeleccionGUI(sistemaDeReservas).setVisible(true));
     }
 }
