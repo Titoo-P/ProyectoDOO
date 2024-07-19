@@ -1,31 +1,37 @@
 # ProyectoDOO
-
 Nombres:
   -Roberto Cruz Pinto
 
 Enunciado:
   Tema 2: Sistema de reserva de asientos de autobús
 
-Diagrama de clases UML: 
-![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
+//////// Nuevos cambios Para ENTREGA 19/07/2024 /////////
 
-Diagrama de casos de uso: 
+-Implementación de Patrones de Diseño-
+Singleton: El patrón Singleton se ha implementado en la clase SistemaDeReservas para asegurar que solo exista una instancia del sistema de reservas en toda la aplicación.
+Factory: El patrón Factory se ha implementado en la clase AutobusFactory para crear instancias de diferentes tipos de autobuses basados en un parámetro tipo.
 
-![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/8e954bab-1fce-45bd-88cd-e400661ea3c2)
+-- Cambio Generales --
+-Se modifico la logica para que se pudiera retroceder y ordenar asientos para diferentes buses al mismo tiempo.
+-Tambien se modifico para que al cerrar el Proyecto, cree un Reporte_reservas.txt donde se detalla todos los asientos comprados y el nombre del usuario.
+-se Agrego un icono para el programa, se agrego un enum para las direcciones de las imagenes y se arreglo gran parte del UML
+-Se agrego herencias para autobuses. extendiendolo a BiopioAutobus y PullwomanAutobus
+-Se agrego Javadoc
 
-Imagenes de la GUI del Proyecto:
+Diagrama de clases UML Actualizado: 
+![Untitled (1)](https://github.com/user-attachments/assets/231ba45c-e40b-48b7-bf0b-cb59b6e2fbbd)
 
-![Imagen01Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/1153acd3-23c3-4dbf-8d75-5300273062bd)
-![Imagen02Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/99d7e9eb-2ab7-43da-9383-6a7ab6dbaaeb)
+Imagenes de la Gui del Proyecto Actualizado:
 
+![fotoproyecto1](https://github.com/user-attachments/assets/7d2c2a84-ba3a-47fa-8312-1b87922b8ff9)
+![Fotoproyecto2](https://github.com/user-attachments/assets/1008d70a-cba4-4b08-83dd-eb754b5aef34)
+
+///////////  Informe entrega 8/7/2024   ////////////
 
 Lista y patrones utilizados:
 
  - Singleton: El patrón Singleton asegura que haya una única instancia de SistemaDeReservas en todo el sistema, permitiendo un punto de acceso global a dicha instancia. Esto es útil para mantener el estado global de las reservas y proporcionar métodos                 centralizados para gestionar los autobuses y sus asientos.
  - Factory Method: SistemaDeReservas para la creación de Autobus. El Factory Method proporciona una interfaz para la creación de objetos Autobus dentro del sistema, permitiendo a las subclases o métodos especializados de SistemaDeReservas crear diferentes tipos de    autobuses sin especificar las clases concretas que se crearán. Esto es útil cuando quieres extender la aplicación para soportar diferentes tipos de autobuses en el futuro.
- - Observer: Comunicación entre BusReservacionGUI y SistemaDeReservas. El patrón Observer se utiliza para notificar a BusReservacionGUI sobre los cambios en el estado de las reservas (como cuando se reserva un asiento). Esto permite que la interfaz gráfica se     
-   actualice automáticamente cuando hay cambios en el sistema de reservas.
- - Template Method: Métodos de reservación en SistemaDeReservas. El patrón Template Method define el esqueleto de un algoritmo en una superclase, pero permite a las subclases sobrescribir ciertos pasos del algoritmo sin cambiar su estructura general. En este caso,    puedes tener diferentes estrategias para reservar asientos en función de la categoría del asiento (salón cama o semi cama), mientras reutilizas la estructura general del método de reservación.
 
 Desiciones del Proyecto: 
 
