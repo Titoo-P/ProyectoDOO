@@ -1,11 +1,12 @@
-package backend;
+package backend.autobuses;
 
 import Excepciones.*;
+import backend.Asiento;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class Autobus {
+public abstract class Autobus {
     private String id;
     private String ruta;
     private String horario;

@@ -1,6 +1,7 @@
 
 import backend.*;
 
+import backend.autobuses.Autobus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

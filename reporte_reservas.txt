@@ -1,6 +1,6 @@
-Autobús ID: 11
-Pasajero: asdasd
-Asiento: 11
+Autobús ID: PULLWOMAN #01
+Pasajero: adasdas
+Asiento: 2
 Categoría: Semi Cama
-Precio: $2500.0
+Precio: $2700.0
 

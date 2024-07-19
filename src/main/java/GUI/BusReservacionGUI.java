@@ -3,10 +3,10 @@ package GUI;
 
 import Excepciones.*;
 import backend.*;
+import backend.autobuses.Autobus;
 
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

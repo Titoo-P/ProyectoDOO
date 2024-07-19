@@ -1,6 +1,7 @@
 package backend;
 
 import Excepciones.*;
+import backend.autobuses.Autobus;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,16 +9,25 @@ import java.util.Map;
 import java.io.FileWriter;
 
 public class SistemaDeReservas {
+    private static SistemaDeReservas instance;
     private Map<String, Autobus> autobuses;
-    private Map<Integer, Reserva> reservas;
+    private Map<String, Map<Integer, Reserva>> reservas;
 
-    public SistemaDeReservas() {
+    private SistemaDeReservas() {
         this.autobuses = new HashMap<>();
         this.reservas = new HashMap<>();
     }
 
+    public static synchronized SistemaDeReservas getInstance() {
+        if (instance == null) {
+            instance = new SistemaDeReservas();
+        }
+        return instance;
+    }
+
     public void agregarAutobus(Autobus autobus) {
         autobuses.put(autobus.getId(), autobus);
+        reservas.put(autobus.getId(), new HashMap<>());
     }
 
     public Autobus seleccionarAutobus(String id) {
@@ -31,8 +41,8 @@ public class SistemaDeReservas {
                 Asiento asiento = autobus.getAsiento(numeroAsiento);
                 if (!asiento.isReservado()) {
                     asiento.setReservado(true);
-                    Reserva reserva = new Reserva(idAutobus,pasajero, asiento, precio);
-                    reservas.put(numeroAsiento, reserva);
+                    Reserva reserva = new Reserva(idAutobus, pasajero, asiento, precio);
+                    reservas.get(idAutobus).put(numeroAsiento, reserva);
                     return true;
                 }
             } catch (InvalidSeatNumberException e) {
@@ -50,7 +60,7 @@ public class SistemaDeReservas {
                 Asiento asiento = autobus.getAsiento(numeroAsiento);
                 if (asiento.isReservado()) {
                     asiento.setReservado(false);
-                    reservas.remove(numeroAsiento);
+                    reservas.get(idAutobus).remove(numeroAsiento);
                 }
             } catch (InvalidSeatNumberException e) {
                 System.err.println(e.getMessage());
@@ -58,8 +68,8 @@ public class SistemaDeReservas {
         }
     }
 
-    public Reserva getReserva(String autobusId, int numeroDeAsiento) {
-        return reservas.get(numeroDeAsiento);
+    public Reserva getReserva(String idAutobus, int numeroDeAsiento) {
+        return reservas.get(idAutobus).get(numeroDeAsiento);
     }
 
     public Map<String, Autobus> getAutobuses() {
@@ -68,12 +78,14 @@ public class SistemaDeReservas {
 
     public void generarReporte() {
         try (FileWriter writer = new FileWriter("reporte_reservas.txt")) {
-            for (Reserva reserva : reservas.values()) {
-                writer.write("Autobús ID: " + reserva.getIdAutobus().toString() + "\n");
-                writer.write("Pasajero: " + reserva.getPasajero().getNombre() + "\n");
-                writer.write("Asiento: " + reserva.getAsiento().getNumero() + "\n");
-                writer.write("Categoría: " + reserva.getAsiento().getCategoria() + "\n");
-                writer.write("Precio: $" + reserva.getPrecio() + "\n\n");
+            for (Map<Integer, Reserva> reservaPorAutobus : reservas.values()) {
+                for (Reserva reserva : reservaPorAutobus.values()) {
+                    writer.write("Autobús ID: " + reserva.getIdAutobus() + "\n");
+                    writer.write("Pasajero: " + reserva.getPasajero().getNombre() + "\n");
+                    writer.write("Asiento: " + reserva.getAsiento().getNumero() + "\n");
+                    writer.write("Categoría: " + reserva.getAsiento().getCategoria() + "\n");
+                    writer.write("Precio: $" + reserva.getPrecio() + "\n\n");
+                }
             }
             System.out.println("Informe de reservas generado exitosamente.");
         } catch (IOException e) {
