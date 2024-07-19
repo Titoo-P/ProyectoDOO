@@ -16,6 +16,7 @@ public class BusReservacionGUI extends JFrame {
     private SistemaDeReservas sistemaDeReservas;
     private Autobus autobus;
     private JLabel estadoLabel;
+    private JButton volverButton;
 
     public BusReservacionGUI(SistemaDeReservas sistemaDeReservas, Autobus autobus) {
         this.sistemaDeReservas = sistemaDeReservas;
@@ -26,7 +27,7 @@ public class BusReservacionGUI extends JFrame {
     private void initializeUI() {
         setTitle("Sistema de Reserva de Asientos");
         setSize(800, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel mainPanel = new JPanel();
@@ -79,9 +80,19 @@ public class BusReservacionGUI extends JFrame {
         estadoLabel.setHorizontalAlignment(SwingConstants.CENTER);
         estadoLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
+        volverButton = new JButton("Volver a Selección de Autobús");
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BusSeleccionGUI(sistemaDeReservas).setVisible(true);
+                dispose();
+            }
+        });
+
         mainPanel.add(piso1Panel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espacio entre pisos
         mainPanel.add(piso2Panel);
+        mainPanel.add(volverButton);
 
         add(mainPanel, BorderLayout.CENTER);
         add(estadoLabel, BorderLayout.SOUTH);
