@@ -26,34 +26,7 @@ Imagenes de la Gui del Proyecto Actualizado:
 ![fotoproyecto1](https://github.com/user-attachments/assets/7d2c2a84-ba3a-47fa-8312-1b87922b8ff9)
 ![Fotoproyecto2](https://github.com/user-attachments/assets/1008d70a-cba4-4b08-83dd-eb754b5aef34)
 
-
-
-
-
-
-///////////////////////////////////////////////////
-
-
-
-
-////// Entrega 8/7/2024  /////
-
--Roberto Cruz Pinto
-
-Tema 2: Sistema de reserva de asientos de autobús
-
-Diagrama de clases UML: 
-![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
-
-Diagrama de casos de uso: 
-
-![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/8e954bab-1fce-45bd-88cd-e400661ea3c2)
-
-Imagenes de la GUI del Proyecto:
-
-![Imagen01Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/1153acd3-23c3-4dbf-8d75-5300273062bd)
-![Imagen02Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/99d7e9eb-2ab7-43da-9383-6a7ab6dbaaeb)
-
+///////////  Informe entrega 8/7/2024   ////////////
 
 Lista y patrones utilizados:
 
