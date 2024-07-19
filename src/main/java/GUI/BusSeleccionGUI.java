@@ -21,7 +21,7 @@ public class BusSeleccionGUI extends JFrame {
     private void initializeUI() {
         setTitle("Selección de Autobús");
         setSize(400, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel selectionPanel = new JPanel();
