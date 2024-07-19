@@ -44,3 +44,11 @@ Problemas encontrados:
 
 Se empezo tarde en el Proyecto, por lo que falto mayor comunicacion y testeo con el referente.
 Tambien con la creacion de las Excepciones, donde la falla de esta tuve que recurrir a ayuda externa para solucionarlo.
+
+
+//////// CAMBIOS DESPUES DE LA ENTREGA INICIAL /////////
+
+-Implementación de Patrones de Diseño-
+Singleton: El patrón Singleton se ha implementado en la clase SistemaDeReservas para asegurar que solo exista una instancia del sistema de reservas en toda la aplicación.
+
+Factory: El patrón Factory se ha implementado en la clase AutobusFactory para crear instancias de diferentes tipos de autobuses basados en un parámetro tipo.
