@@ -8,6 +8,7 @@ Enunciado:
 //////// Nuevos cambios Para ENTREGA 19/07/2024 /////////
 
 -Implementación de Patrones de Diseño-
+
 Singleton: El patrón Singleton se ha implementado en la clase SistemaDeReservas para asegurar que solo exista una instancia del sistema de reservas en toda la aplicación.
 Factory: El patrón Factory se ha implementado en la clase AutobusFactory para crear instancias de diferentes tipos de autobuses basados en un parámetro tipo.
 
@@ -20,6 +21,11 @@ Factory: El patrón Factory se ha implementado en la clase AutobusFactory para c
 
 Diagrama de clases UML Actualizado: 
 ![Untitled (1)](https://github.com/user-attachments/assets/231ba45c-e40b-48b7-bf0b-cb59b6e2fbbd)
+
+Diagrama de casos de uso: 
+
+![DiagramaDeCasos](https://github.com/user-attachments/assets/524b9a4c-7be5-482a-8bd2-d266258d0e94)
+
 
 Imagenes de la Gui del Proyecto Actualizado:
 
