@@ -13,6 +13,7 @@ Singleton: El patrón Singleton se ha implementado en la clase SistemaDeReservas
 Factory: El patrón Factory se ha implementado en la clase AutobusFactory para crear instancias de diferentes tipos de autobuses basados en un parámetro tipo.
 
 -- Cambio Generales --
+
 -Se modifico la logica para que se pudiera retroceder y ordenar asientos para diferentes buses al mismo tiempo.
 -Tambien se modifico para que al cerrar el Proyecto, cree un Reporte_reservas.txt donde se detalla todos los asientos comprados y el nombre del usuario.
 -se Agrego un icono para el programa, se agrego un enum para las direcciones de las imagenes y se arreglo gran parte del UML
