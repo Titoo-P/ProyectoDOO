@@ -10,9 +10,18 @@ Enunciado:
   El sistema debe gestionar varios tipos de autobuses (por ejemplo, con diferente número de plazas, o de 1 o 2 pisos...).
   El sistema debe mostrar un menú que permita seleccionar el autobús en función de su horario y recorrido (se supone que estos datos están disponibles con los autobuses vacíos cuando se lanza el software)
 
-Diagrama de clases UML: Faltante
+Diagrama de clases UML: 
+![UML](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/097e3655-1511-4894-a6c1-885e6c21aa88)
 
-Diagrama de casos de uso: Faltante
+Diagrama de casos de uso: 
+
+![DiagramaDeCasos](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/8e954bab-1fce-45bd-88cd-e400661ea3c2)
+
+Imagenes de la GUI del Proyecto:
+
+![Imagen01Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/1153acd3-23c3-4dbf-8d75-5300273062bd)
+![Imagen02Proyecto](https://github.com/Titoo-P/ProyectoDOO/assets/132025860/99d7e9eb-2ab7-43da-9383-6a7ab6dbaaeb)
+
 
 Lista y patrones utilizados:
 
