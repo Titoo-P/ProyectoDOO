@@ -16,6 +16,8 @@ public class BusSeleccionGUI extends JFrame {
     public BusSeleccionGUI(SistemaDeReservas sistemaDeReservas) {
         this.sistemaDeReservas = sistemaDeReservas;
         initializeUI();
+
+        setIconImage(ImagenesEnum.ICONO.getImage());
     }
 
     private void initializeUI() {
@@ -25,6 +27,7 @@ public class BusSeleccionGUI extends JFrame {
         setLayout(new BorderLayout());
 
         JPanel selectionPanel = new JPanel();
+        selectionPanel.setOpaque(false); // Hacer transparente el panel
         JLabel selectLabel = new JLabel("Seleccione Autobús:");
         autobusComboBox = new JComboBox<>();
         for (String id : sistemaDeReservas.getAutobuses().keySet()) {

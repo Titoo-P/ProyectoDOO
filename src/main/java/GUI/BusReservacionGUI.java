@@ -22,6 +22,8 @@ public class BusReservacionGUI extends JFrame {
         this.sistemaDeReservas = sistemaDeReservas;
         this.autobus = autobus;
         initializeUI();
+
+        setIconImage(ImagenesEnum.ICONO.getImage());
     }
 
     private void initializeUI() {
