@@ -1,0 +1,24 @@
+Autobús ID: BIOPIO #01
+Pasajero: asda
+Asiento: 1
+Categoría: Semi Cama
+Precio: $1500.0
+
+Autobús ID: BIOPIO #01
+Pasajero: sadasda
+Asiento: 18
+Categoría: Salón Cama
+Precio: $4000.0
+
+Autobús ID: BIOPIO #01
+Pasajero: asdasda
+Asiento: 14
+Categoría: Semi Cama
+Precio: $1500.0
+
+Autobús ID: BIOPIO #02
+Pasajero: adsadasd
+Asiento: 10
+Categoría: Semi Cama
+Precio: $2500.0
+
