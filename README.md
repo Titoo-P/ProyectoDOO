@@ -32,6 +32,8 @@ Imagenes de la Gui del Proyecto Actualizado:
 
 ![fotoproyecto1](https://github.com/user-attachments/assets/7d2c2a84-ba3a-47fa-8312-1b87922b8ff9)
 ![Fotoproyecto2](https://github.com/user-attachments/assets/1008d70a-cba4-4b08-83dd-eb754b5aef34)
+![Informe](https://github.com/user-attachments/assets/81bbe20a-074e-436c-8a9d-ceea0bcd4adf)
+
 
 ///////////  Informe entrega 8/7/2024   ////////////
 
